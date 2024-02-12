@@ -1,9 +1,11 @@
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
+// import { errorHandler } from '../utils/error.js/';
+// import jwt from 'jsonwebtoken';
+
 export const signup = async (req, res, next) => {
-  // this is done to save the data from the api route to the database
   const { username, email, password } = req.body;
-  const hashedPassword = bcryptjs.hashSync(password, 10); // using this passsword get encrypted
+  const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({ username, email, password: hashedPassword });
   try {
     await newUser.save();
